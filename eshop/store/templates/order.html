@@ -1,0 +1,61 @@
+{%extends 'base.html'%}
+{%block body_block%}
+{%load cart%}
+{%load custom_filter%}
+<div class="container"></div>
+<div class="border rounded p-4 m-4">
+   <p class="display-4 pl-4 ml-4">Your orders</p>
+   <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>S.No </th>
+                <th>Images</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Totel</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+           {%for pro in orders%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                 <td><img style="height: 80px;" class="rounded-circle" src="{{pro.product.image.url}}" alt=""> </td>
+                <td>{{pro.product.name}}</td>
+                <td>{{pro.date}}</td>
+                <td>{{pro.price|currency}}</td>
+                <td>{{pro.quantity}}</td>
+                <td>{{pro.quantity|multiply:pro.price|currency}}</td>
+                {%if pro.status%}
+                <td><span class="badge bg-success">Complated</span></td>
+                {%else%}
+                <td><span class="badge bg-warning text-dark">Pending</span></td>
+                {%endif%}
+                
+                
+               
+
+            </tr>
+            {%endfor%}
+            
+          
+        </tbody>
+    </table>
+
+    
+</div>
+
+
+
+  
+ 
+ 
+  
+
+
+ 
+ 
+{%endblock%}
